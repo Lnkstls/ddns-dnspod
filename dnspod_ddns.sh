@@ -6,6 +6,7 @@ API_ID=12345
 API_Token=abcdefghijklmnopq2333333
 domain=example.com
 host=home
+ttl=600
 CHECKURL="http://ip.03k.org"
 #OUT="pppoe"
 #CONF END
@@ -43,7 +44,7 @@ fi
 record_id=$(echo ${Record#*\"records\"\:\[\{\"id\"}|cut -d'"' -f2)
 record_line_id=$(echo ${Record#*line_id}|cut -d'"' -f3)
 echo Start DDNS update...
-ddns="$(curl -4 -k $(if [ -n "$OUT" ]; then echo "--interface $OUT"; fi) -s -X POST https://dnsapi.cn/Record.Ddns -d "${token}&record_id=${record_id}&record_line_id=${record_line_id}")"
+ddns="$(curl -4 -k $(if [ -n "$OUT" ]; then echo "--interface $OUT"; fi) -s -X POST https://dnsapi.cn/Record.Modify -d "${token}&record_type=A&record_id=${record_id}&record_line_id=${record_line_id}&ttl=${ttl}&value=${DNSIP}")"
 ddns_result="$(echo ${ddns#*message\"}|cut -d'"' -f2)"
 echo -n "DDNS upadte result:$ddns_result "
 echo $ddns|grep -Eo "$IPREX"|tail -n1
