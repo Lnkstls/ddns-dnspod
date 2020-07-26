@@ -4,9 +4,9 @@
 ## 使用方法
 本脚本分为两个版本，一个是获取自己外网ip的版本dnspod_ddns.sh，一个是直接获取自己网卡设备上的ip的版本dnspod_ddns_line.sh（对于多拨或者路由器网关用户适用）。
 
-``` wget --no-check-certificate -O ddns.sh https://raw.githubusercontent.com/Lnkstls/ddns-dnspod/master/dnspod_ddns.sh && chmod +x ddns.sh && ./ddns.sh ```
+``` wget --no-check-certificate -O ddns.sh https://raw.githubusercontent.com/Lnkstls/ddns-dnspod/master/dnspod_ddns.sh && chmod +x ddns.sh && ./ddns.sh
 
-``` wget --no-check-certificate -O ddns_line.sh https://raw.githubusercontent.com/Lnkstls/ddns-dnspod/master/dnspod_ddns_line.sh && chmod ddns_line.sh && ./ddns_line.sh ```
+``` wget --no-check-certificate -O ddns_line.sh https://raw.githubusercontent.com/Lnkstls/ddns-dnspod/master/dnspod_ddns_line.sh && chmod ddns_line.sh && ./ddns_line.sh
 
 ### 获取API的ID和Token
 API的ID和Token可以在后台获取：  
