@@ -7,6 +7,7 @@
 ``` 
 wget --no-check-certificate -O ddns.sh https://raw.githubusercontent.com/Lnkstls/ddns-dnspod/master/dnspod_ddns.sh && chmod +x ddns.sh && ./ddns.sh
 ```
+
 ``` 
 wget --no-check-certificate -O ddns_line.sh https://raw.githubusercontent.com/Lnkstls/ddns-dnspod/master/dnspod_ddns_line.sh && chmod ddns_line.sh && ./ddns_line.sh
 ```
