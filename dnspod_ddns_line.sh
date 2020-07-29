@@ -28,7 +28,7 @@ else
     DNSIP=$(echo $DNSTEST | grep -Eo "$IPREX" | tail -n1)
 fi
 echo "[DNS IP]:$DNSIP"
-if [ "$DNSIP" == "$DEVIP" ]; then
+if [ "$DNSIP" = "$DEVIP" ]; then
     echo "IP SAME IN DNS,SKIP UPDATE."
     exit
 fi
