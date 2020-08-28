@@ -2,11 +2,39 @@
 #Github:https://github.com/kkkgo/dnspod-ddns-with-bashshell
 #More: https://03k.org/dnspod-ddns-with-bashshell.html
 #CONF START
-API_ID=12345
-API_Token=abcdefghijklmnopq2333333
-domain=example.com
-host=home
-ttl=600
+
+while getopts ":i:t:d:h:l:" opt; do
+  case "$opt" in
+    i)
+      API_ID=${OPTARG:-12345}
+    ;;
+    t)
+      API_Token=${OPTARG:-abcdefghijklmnopq2333333}
+    ;;
+    d)
+      domain=${OPTARG:-example.com}
+    ;;
+    h)
+      host=${OPTARG:-home}
+    ;;
+    l)
+      ttl=${OPTARG:-600}
+    ;;
+    *)
+    echo "
+      -i API_ID
+      -t API_Token
+      -d domain
+      -h host
+      -l ttl default 600
+      "
+    ;;
+  esac
+done
+
+
+# echo "${API_ID}、${API_Token}、${domain}、${host}、${ttl}"
+
 CHECKURL="http://ip.03k.org"
 #OUT="pppoe"
 #CONF END
@@ -39,7 +67,7 @@ iferr="$(echo ${Record#*code} | cut -d'"' -f3)"
 if [ "$iferr" = "1" ]; then
     record_ip=$(echo ${Record#*value} | cut -d'"' -f3)
     echo "[API IP]:$record_ip"
-    if [ "$record_ip" == "$URLIP" ]; then
+    if [ "$record_ip" = "$URLIP" ]; then
         echo "IP SAME IN API,SKIP UPDATE."
         exit
     fi
@@ -54,3 +82,4 @@ else
     echo -n Get $host.$domain error :
     echo $(echo ${Record#*message\"}) | cut -d'"' -f2
 fi
+if
