@@ -49,13 +49,13 @@ if (echo $CHECKURL | grep -q "://"); then
   dnscmd="nslookup"
   type nslookup >/dev/null 2>&1 || dnscmd="ping -c1"
   DNSTEST=$($dnscmd $host.$domain)
-  if [ "$?" != 0 ] && [ "$dnscmd" == "nslookup" ] || (echo $DNSTEST | grep -qEvo "$IPREX"); then
+  if [ "$?" != 0 ] && [ "$dnscmd" = "nslookup" ] || (echo $DNSTEST | grep -qEvo "$IPREX"); then
     DNSIP="Get $host.$domain DNS Failed."
   else
     DNSIP=$(echo $DNSTEST | grep -Eo "$IPREX" | tail -n1)
   fi
   echo "[DNS IP]:$DNSIP"
-  if [ "$DNSIP" == "$URLIP" ]; then
+  if [ "$DNSIP" = "$URLIP" ]; then
     echo "IP SAME IN DNS,SKIP UPDATE."
     exit
   fi
@@ -68,7 +68,7 @@ if [ "$iferr" = "1" ]; then
   echo "[API IP]:$record_ip"
   if [ "$record_ip" = "$URLIP" ]; then
     echo "IP SAME IN API,SKIP UPDATE."
-    exit
+    exit 1
   fi
   record_id=$(echo ${Record#*\"records\"\:\[\{\"id\"} | cut -d'"' -f2)
   record_line_id=$(echo ${Record#*line_id} | cut -d'"' -f3)
